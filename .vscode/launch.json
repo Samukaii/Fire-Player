@@ -1,0 +1,30 @@
+{
+  // Use o IntelliSense para aprender sobre possíveis atributos.
+  // Passe o mouse para ver as descrições dos atributos existentes.
+  // Para obter mais informações, visite: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+      
+    {
+      "name": "Debug Android",
+      "cwd": "${workspaceFolder}",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "android"
+    },
+    {
+      "name": "Attach to packager",
+      "cwd": "${workspaceFolder}",
+      "type": "reactnative",
+      "request": "attach"
+    },
+
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Executar Programa",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}\\start"
+    }
+  ]
+}
