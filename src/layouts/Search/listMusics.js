@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DZapi from '../../services/Deezer.Api';
-import {st_listMusics} from './styles';
+import {st_listMusics, st_generic} from './styles';
 
 import {
   View,
@@ -125,7 +125,7 @@ class ListMusics extends Component {
           </TouchableOpacity>
         </View>
         <FlatList
-          style={general.lista}
+          style={st_generic.lista}
           data={this.state.results}
           keyExtractor={item => item.id}
           renderItem={this.renderItemDeezer}

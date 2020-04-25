@@ -22,15 +22,10 @@ const Stack = createStackNavigator();
 
 function SearchStack() {
   return (
-    <View>
-      <Text>oiii</Text>
-    </View>
-  );
-  /*return (
     <Stack.Navigator>
       <Stack.Screen
-        name="tracks"
-        component={Main}
+        name="listMusics"
+        component={listMusics}
         options={{
           headerTitle: false,
           headerStyle: {backgroundColor: '#223'},
@@ -65,7 +60,7 @@ function SearchStack() {
       />
       <Stack.Screen
         name="details"
-        component={Track}
+        component={musicDetails}
         options={{
           headerTitle: 'Detalhes',
           headerStyle: {backgroundColor: '#223'},
@@ -73,13 +68,13 @@ function SearchStack() {
         }}
       />
     </Stack.Navigator>
-  );*/
+  );
 }
 
 export default function MainTab() {
   return (
     <View style={{flex: 1, backgroundColor: '#223'}}>
-      {/*<Tab.Navigator
+      <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({color, size}) => {
             let iconName;
@@ -115,11 +110,11 @@ export default function MainTab() {
           inactiveTintColor: '#555',
         }}>
         <Tab.Screen name="Search" component={SearchStack} />
-        <Tab.Screen name="Offline" component={OffTracks} />
-        <Tab.Screen name="Playlists" component={Playlists} />
-        <Tab.Screen name="Albums" component={Playlists} />
-        <Tab.Screen name="Artists" component={Playlists} />
-      </Tab.Navigator>*/}
+        <Tab.Screen name="Offline" component={yourMusics} />
+        <Tab.Screen name="Playlists" component={playlists} />
+        <Tab.Screen name="Albums" component={playlists} />
+        <Tab.Screen name="Artists" component={playlists} />
+      </Tab.Navigator>
     </View>
   );
 }

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import {st_musicDetails} from './styles';
 import axios from 'axios';
-
+import {milisecToTime} from '../../operations/Time';
 import {
   Text,
   Image,
@@ -20,6 +20,34 @@ const {
   st_generic,
 } = st_musicDetails;
 
+
+export default function musicDetails (props){
+  const item = props.route.params.product;
+
+  const [trackListMusics, setTrackListMusics] = useState([]);
+  const [musicInfo, setMusicInfo] = useState(
+    {
+      timePlaying: '00:00',
+      timeTotal: '00:00',
+      statusMusic: 0,
+      isPlaying: false,
+      positionMusic: 0,
+      musicLength: 0,
+    }
+  );
+  
+  useEffect(()=>{
+    loadTracksDeezer();
+  },[]);
+
+  async function loadTracksDeezer(){
+    const responseDZ = await DZapi.get(this.item.album.tracklist);
+    const {data} = responseDZ.data;
+
+    setTrackListMusics(data);
+  }
+
+}
 class Track extends Component {
   state = {
     timePlaying: '00:00',
@@ -37,17 +65,6 @@ class Track extends Component {
   componentDidMount() {
     this.loadTracksDeezer();
   }
-
-  converterTempo = miliseconds => {
-    let totalSeconds = Math.round(miliseconds / 1000);
-    let minutes = Math.floor(totalSeconds / 60);
-    let seconds = Math.round((totalSeconds / 60 - minutes) * 60);
-
-    let minutesFormated = minutes < 10 ? '0' + minutes : minutes;
-    let secondsFormated = seconds < 10 ? '0' + seconds : seconds;
-
-    return minutesFormated + ':' + secondsFormated;
-  };
 
   loadTracksDeezer = async () => {
     const responseDZ = await DZapi.get(this.item.album.tracklist);

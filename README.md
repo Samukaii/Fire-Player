@@ -6,12 +6,13 @@
 
 ## Imports
 
-```javascript
+``
 import MusicFiles, {
-  Constants,
-  CoverImage,
+Constants,
+CoverImage,
 } from 'react-native-get-music-files-v3dev-test';
-```
+
+````
 
 ## Constants
 
@@ -28,7 +29,7 @@ import MusicFiles, {
   },
 }
 
-```
+````
 
 ### example
 
