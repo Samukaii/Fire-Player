@@ -26,7 +26,6 @@ class ListMusics extends Component {
     resultCount: 0,
   };
   componentDidMount() {
-    console.log('Componente montou');
     this.loadTracksDeezer();
   }
 
@@ -119,7 +118,6 @@ class ListMusics extends Component {
             style={st_search.button}
             onPress={() => {
               this.loadTracksDeezer(0, this.state.term);
-              console.log(this.state.term);
             }}>
             <Text style={{color: 'white'}}>Pesquisar</Text>
           </TouchableOpacity>

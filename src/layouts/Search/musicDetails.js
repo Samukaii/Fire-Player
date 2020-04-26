@@ -2,53 +2,77 @@ import React, {Component, useState, useEffect} from 'react';
 import {st_musicDetails} from './styles';
 import axios from 'axios';
 import {milisecToTime} from '../../operations/Time';
-import {
-  Text,
-  Image,
-  View,
-  ImageBackground,
-  ScrollView,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import {ScrollView, FlatList} from 'react-native';
+import Tron from 'reactotron-react-native';
 
-const DZapi = axios.create();
-const {
-  st_infoMusic,
-  st_audioPlayer,
-  st_tracklist,
-  st_generic,
-} = st_musicDetails;
+//
+//
+//         MUSIC DETAILS
+//
 
-
-export default function musicDetails (props){
-  const item = props.route.params.product;
-
+export default function musicDetails({route}) {
+  const {product} = route.params;
+  const DZapi = axios.create();
+  const {st_infoMusic, st_tracklist} = st_musicDetails;
   const [trackListMusics, setTrackListMusics] = useState([]);
-  const [musicInfo, setMusicInfo] = useState(
-    {
-      timePlaying: '00:00',
-      timeTotal: '00:00',
-      statusMusic: 0,
-      isPlaying: false,
-      positionMusic: 0,
-      musicLength: 0,
-    }
-  );
-  
-  useEffect(()=>{
-    loadTracksDeezer();
-  },[]);
 
-  async function loadTracksDeezer(){
-    const responseDZ = await DZapi.get(this.item.album.tracklist);
+  useEffect(() => {
+    loadTracksDeezer();
+  }, []);
+
+  async function loadTracksDeezer() {
+    const responseDZ = await DZapi.get(product.album.tracklist);
     const {data} = responseDZ.data;
 
     setTrackListMusics(data);
   }
 
+  function renderTrackList({item}) {
+    const {Title, Artist, NumberTrack} = st_tracklist;
+    const {Base, Info, ImageCover} = st_tracklist;
+    const {NumberTrackContainer} = st_tracklist;
+
+    return (
+      <Base>
+        <ImageCover source={{uri: product.album.cover_medium}} />
+
+        <Info>
+          <Title>{item.title_short}</Title>
+          <Artist>{item.artist.name}</Artist>
+        </Info>
+
+        <NumberTrackContainer>
+          <NumberTrack>{item.track_position}</NumberTrack>
+        </NumberTrackContainer>
+      </Base>
+    );
+  }
+
+  const {Root, ImageCover, Title, Artist, Album} = st_infoMusic;
+  const {List} = st_tracklist;
+  return (
+    <ScrollView>
+      <Root
+        source={{uri: product.album.cover_xl}}
+        blurRadius={100}
+        imageStyle={{opacity: 0.5, transform: [{scaleX: 10}, {scaleY: 10}]}}>
+        <ImageCover source={{uri: product.album.cover_xl}} />
+
+        <Title>{product.title}</Title>
+        <Artist>{product.artist.name}</Artist>
+        <Album>{product.album.title}</Album>
+
+        <FlatList
+          style={List.Root}
+          data={trackListMusics}
+          keyExtractor={item => item.id}
+          renderItem={renderTrackList}
+        />
+      </Root>
+    </ScrollView>
+  );
 }
-class Track extends Component {
+/*class Track extends Component {
   state = {
     timePlaying: '00:00',
     timeTotal: '00:00',
@@ -126,4 +150,4 @@ class Track extends Component {
   }
 }
 
-export default Track;
+export default Track;*/
