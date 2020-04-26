@@ -1,16 +1,8 @@
 import React, {Component} from 'react';
 import DZapi from '../../services/Deezer.Api';
 import {st_listMusics, st_generic} from './styles';
-
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  TextInput,
-  Image,
-  ToastAndroid,
-} from 'react-native';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {FlatList, ToastAndroid, TextInput} from 'react-native';
 
 const {st_results, st_search} = st_listMusics;
 
