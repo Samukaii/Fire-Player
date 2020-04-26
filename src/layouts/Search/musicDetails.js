@@ -1,11 +1,9 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {st_musicDetails} from './styles';
 import axios from 'axios';
-import {milisecToTime} from '../../operations/Time';
 import {ScrollView, FlatList} from 'react-native';
 import Tron from 'reactotron-react-native';
 
-//
 //
 //         MUSIC DETAILS
 //
