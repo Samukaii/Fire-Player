@@ -6,6 +6,7 @@ import {FlatList, ToastAndroid, TextInput} from 'react-native';
 
 const {st_results, st_search} = st_listMusics;
 
+function ListMusics() {}
 class ListMusics extends Component {
   pesquisa = texto => {};
   state = {
