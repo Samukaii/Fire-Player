@@ -1,10 +1,10 @@
 import 'react-native-gesture-handler';
-import Reactotron from 'reactotron-react-native';
 import './config/statusBarConfig';
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import MainTab from './routes';
 import {NavigationContainer} from '@react-navigation/native';
+import reactotron from 'reactotron-react-native';
 
 export default function App() {
   return (
@@ -15,5 +15,3 @@ export default function App() {
     </View>
   );
 }
-
-Reactotron.log(App());

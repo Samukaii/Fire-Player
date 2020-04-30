@@ -16,9 +16,12 @@ import yourMusics from '../layouts/YourMusics';
 import listMusics from '../layouts/Search';
 import musicDetails from '../layouts/Search/musicDetails';
 import playlists from '../layouts/Playlists';
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+//
+//         ROUTES
+//
 
 function SearchStack() {
   return (

@@ -1,4 +1,5 @@
 @echo off
+title "Menu Inicial de Desenvolvimento"
 :main
 cls
 echo ======================================================================
@@ -8,13 +9,14 @@ echo.
 echo Escolha uma opcao:
 echo (1) Para abrir o emulador
 echo (2) Para abrir o VS Code
-echo (3) Para abrir o Opera
-echo (4) Para abrir o Youtube Music
-echo (5) Para limpar o projeto
-echo (6) Para instalar o aplicativo no emulador via react-native
-echo (7) Para instalar o aplicativo no emulador via gradlew
-echo (8) Para iniciar o aplicativo
-echo (9) Para iniciar o aplicativo com cache resetado
+echo (3) Para abrir o Reactotron
+echo (4) Para abrir o Opera
+echo (5) Para abrir o Youtube Music
+echo (6) Para limpar o projeto
+echo (7) Para instalar o aplicativo no emulador via react-native
+echo (8) Para instalar o aplicativo no emulador via gradlew
+echo (9) Para iniciar o aplicativo
+echo (10) Para iniciar o aplicativo com cache resetado
 echo (e) Para editar este arquivo
 echo (s) Para sair do Hub
 echo (x) Para sair do terminal
@@ -22,13 +24,14 @@ set /p choose=Esperando resposta...
 
 if %choose% == 1 (goto emul)
 if %choose% == 2 (goto vscode)
-if %choose% == 3 (goto opera)
-if %choose% == 4 (goto ytmusic)
-if %choose% == 5 (goto cleanproj)
-if %choose% == 6 (goto installapprn)
-if %choose% == 7 (goto installappgd)
-if %choose% == 8 (goto startapp)
-if %choose% == 9 (goto startappreset)
+if %choose% == 3 (goto rctron)
+if %choose% == 4 (goto opera)
+if %choose% == 5 (goto ytmusic)
+if %choose% == 6 (goto cleanproj)
+if %choose% == 7 (goto installapprn)
+if %choose% == 8 (goto installappgd)
+if %choose% == 9 (goto startapp)
+if %choose% == 10 (goto startappreset)
 if %choose% == e (goto editfile)
 if %choose% == s (goto exit)
 if %choose% == x (goto exitterm)
@@ -69,12 +72,16 @@ goto emul
 code .
 goto wantexit
 
+:rctron
+start %USERPROFILE%\AppData\Local\Programs\reactotron-app\Reactotron.exe
+goto wantexit
+
 :opera
 start opera.exe
 goto wantexit
 
 :ytmusic
-%USERPROFILE%\AppData\Local\Programs\youtube-music-desktop-app\"YouTube Music Desktop App.exe"
+start %USERPROFILE%\AppData\Local\Programs\youtube-music-desktop-app\"YouTube Music Desktop App.exe"
 goto wantexit
 
 :cleanproj

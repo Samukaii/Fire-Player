@@ -6,7 +6,7 @@ export const st_search = {
     color: ${Colors.textThemeLight};
   `,
   Button: styled.TouchableOpacity`
-    background-color: ${Colors.themeLight};
+    background-color: ${Colors.button};
     padding: 12px;
     color: ${Colors.textThemeLight};
     width: 27%;
@@ -21,7 +21,7 @@ export const st_search = {
     border-radius: 15px;
   `,
   Base: styled.View`
-    display: 'flex';
+    display: flex;
     flex-direction: row;
     padding: 15px;
     margin-top: 6px;
@@ -62,12 +62,12 @@ export const st_results = {
     color: ${Colors.textThemeLight};
   `,
   Title: styled.Text`
-    font-size: 18pt;
+    font-size: 18px;
     font-weight: bold;
     color: ${Colors.textThemeLight};
   `,
   Artist: styled.Text`
-    font-size: 15pt;
+    font-size: 15px;
     color: ${Colors.textThemeLight};
   `,
 };
