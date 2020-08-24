@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
-import {st_background} from './styles';
-import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
-import MusicFiles, {CoverImage} from 'react-native-get-music-files-v3dev-test';
-import {faPlay, faPause, faThList} from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, FlatList, Image, SafeAreaView } from 'react-native';
+import { st_background } from './styles';
+import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
+import MusicFiles, { CoverImage } from 'react-native-get-music-files-v3dev-test';
+import { faPlay, faPause, faThList } from '@fortawesome/free-solid-svg-icons';
 import Tron from 'reactotron-react-native';
 import MusicPlayer from './musicPlayer';
 var Sound = require('react-native-sound');
@@ -22,7 +22,7 @@ const OffTracks = () => {
 
   useEffect(() => {
     Sound.setCategory('Playback');
-    songs.results.length === 0 ? getPermissionsAsync() : () => {};
+    songs.results.length === 0 ? getPermissionsAsync() : () => { };
   }, []);
 
   useEffect(() => {
@@ -33,19 +33,19 @@ const OffTracks = () => {
     getPermissionsAsync().then(perm => {
       switch (perm) {
         case RESULTS.UNAVAILABLE:
-          //console.log('Recurso indisponível');
+          console.log('Recurso indisponível');
           break;
         case RESULTS.DENIED:
-          //console.log('Recurso ainda não solicitado');
+          console.log('Recurso ainda não solicitado');
           request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE);
           updatePermissionsAsync();
           break;
         case RESULTS.GRANTED:
-          //console.log('Recurso permitido');
+          console.log('Recurso permitido');
           getSongsAsync();
           break;
         case RESULTS.BLOCKED:
-          //console.log('Recurso negado');
+          console.log('Recurso negado');
           break;
       }
     });
@@ -58,9 +58,10 @@ const OffTracks = () => {
     return permissionResult;
   };
   const getSongsAsync = async () => {
-    const songResult = await MusicFiles.getSongs({});
-    const changes = {results: songResult.results, length: songResult.length};
-    setSongs({...changes});
+    const songResult = await MusicFiles.getAll({ cover: true });
+
+    const changes = { results: songResult.results, length: songResult.length };
+    setSongs({ ...changes });
   };
 
   function playSong(item) {
@@ -72,30 +73,34 @@ const OffTracks = () => {
         currentTrack.song.setVolume(0.0);
         currentTrack.song.stop(() => {
           setCurrentTrack(
-            Object.assign({...currentTrack}, {song: song, ...item}),
+            Object.assign({ ...currentTrack }, { song: song, ...item }),
           );
           Tron.log(currentTrack);
         });
       } else
         setCurrentTrack(
-          Object.assign({...currentTrack}, {song: song, ...item}),
+          Object.assign({ ...currentTrack }, { song: song, ...item }),
         );
     });
   }
-  const renderMusics = ({item}) => {
+  const renderMusics = ({ item }) => {
+    console.log(item);
     return (
-      <View style={{backgroundColor: '#eee'}}>
-        <CoverImage source={item.path} style={{width: 100, height: 100}} />
-        <Text>{item.title}</Text>
-        <Text>{item.artist}</Text>
-        <Text>{item.album}</Text>
-        <TouchableOpacity
-          style={{padding: 10, backgroundColor: '#3030'}}
-          onPress={() => {
-            playSong(item);
-          }}>
-          <Text>Tocar</Text>
-        </TouchableOpacity>
+      <View style={{ backgroundColor: "#334", borderTopWidth: 2, borderTopColor: "#657", width: "100%", marginBottom: 10, padding: 15, flexDirection: "row" }}>
+        <CoverImage source={item.path} style={{ width: 100, height: 100 }} />
+        <View style={{ marginLeft: 20 }}>
+          <Text style={{ color: "white" }}>{item.title}</Text>
+          <Text style={{ color: "white" }}>{item.artist}</Text>
+          <Text style={{ color: "white" }}>{item.album}</Text>
+          <TouchableOpacity
+            style={{ padding: 10, backgroundColor: '#3030' }}
+            onPress={() => {
+              playSong(item);
+            }}>
+            <Text style={{ color: "white" }}>Tocar</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     );
   };
@@ -112,16 +117,21 @@ const OffTracks = () => {
       <TouchableOpacity onPress={checkPermission}>
         <Text>Pesquisar</Text>
       </TouchableOpacity>
-      <FlatList
-        data={songs.results}
-        keyExtractor={item => parseInt(item.id)}
-        renderItem={renderMusics}
-      />
-      <MusicPlayer
-        iconPlay={iconPlay}
-        switchPlay={switchPlay}
-        item={currentTrack}
-      />
+      <SafeAreaView>
+        <FlatList
+          data={songs.results}
+          keyExtractor={item => parseInt(item.id)}
+          renderItem={renderMusics}
+          style={{ height: "70%" }}
+        />
+        <MusicPlayer
+          iconPlay={iconPlay}
+          switchPlay={switchPlay}
+          item={currentTrack}
+        />
+      </SafeAreaView>
+
+
     </View>
   );
 };

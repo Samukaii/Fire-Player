@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import Colors from '../../config/styles';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
-import {CoverImage} from 'react-native-get-music-files-v3dev-test';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { CoverImage } from 'react-native-get-music-files-v3dev-test';
 import {
   faCaretSquareLeft,
   faCaretSquareRight,
@@ -12,12 +12,7 @@ import {
 export default function MusicPlayer(props) {
   return (
     <Player>
-      <AlbumCover>
-        <CoverImage source={props.item.path} width={250} height={250} />
-      </AlbumCover>
-      <Artist>{props.item.artist}</Artist>
-      <Title>{props.item.title}</Title>
-      <Duration maximumValue={100} minimumValue={0} />
+
       <Controller>
         <Prev>
           <FontAwesomeIcon icon={faAngleLeft} color="#eee" size={35} />
@@ -29,6 +24,11 @@ export default function MusicPlayer(props) {
           <FontAwesomeIcon icon={faAngleRight} color="#eee" size={35} />
         </Next>
       </Controller>
+      <CoverImage source={props.item.path} style={{ width: 250, height: 250 }} />
+      <AlbumCover />
+      <Artist>{props.item.artist}</Artist>
+      <Title>{props.item.title}</Title>
+      <Duration maximumValue={100} minimumValue={0} />
     </Player>
   );
 }
@@ -43,7 +43,8 @@ const Duration = styled.Slider`
 const Player = styled.View`
   width: 100%;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 0;
+  height: 80px;
 `;
 const Title = styled.Text`
   color: #ff0;

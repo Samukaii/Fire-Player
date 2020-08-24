@@ -62,7 +62,7 @@ all attributes of the options object are optional
 
 #### returns
 
-```javascript
+```typescript
 {
   "results": {
     id: number,
@@ -101,7 +101,7 @@ search = searchParam => {
 
 all attributes are optional
 
-```
+```typescript
 {
   cover?: boolean,
   coverFolder?: string,
@@ -155,7 +155,7 @@ getAll = () => {
 
 all attributes are optional
 
-```
+```typescript
 {
   cover?: boolean,
   coverFolder?: string,
@@ -165,7 +165,7 @@ all attributes are optional
 
 #### returns
 
-```
+```typescript
 {
   id: number,
   path: string,
@@ -199,7 +199,7 @@ scans a directory
 
 #### options
 
-```
+```typescript
 {
   path: string,
   minFileSize: number,
@@ -210,7 +210,7 @@ scans a directory
 
 #### returns
 
-```
+```typescript
 {
   id: number,
   path: string,
@@ -245,7 +245,7 @@ getSongByPaths = () => {
 
 all attributes are optional
 
-```
+```typescript
 {
 batchSize?: number,
 batchNumber?: number,
@@ -290,7 +290,7 @@ getArtists = () => {
 
 all attributes are optional
 
-```
+```typescript
 {
 artist?: string,
 batchSize?: number,
@@ -302,7 +302,7 @@ sortOrder?: string,
 
 #### returns
 
-```
+```typescript
 {
   results": {
     id: string,
@@ -340,7 +340,7 @@ getAlbums = () => {
 
 all attributes are optional
 
-```
+```typescript
 {
 artist?: string,
 album?: string,
@@ -353,7 +353,7 @@ sortOrder?: string,
 
 #### returns
 
-```
+```typescript
 {
  "results": {
      id: string,
